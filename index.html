@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle LED</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="button" onclick="onClick()" value="on">ON</button>
+
+    <script>
+        function onClick() {
+            const button = document.getElementById('button');
+            const value = button.value;
+            button.value = value === 'on' ? 'off' : 'on';
+            const content = button.textContent;
+            button.textContent = content === 'ON' ? 'OFF' : 'ON';
+            console.log('Current value:', button.value);
+            fetch(`http://localhost:3000/click/${value}`,)
+                .then(res => res.json())
+                .then(json => console.log(json))
+                .catch(error => console.log(error));
+
+        } 
+    </script>
+
+</body>
+
+</html>
