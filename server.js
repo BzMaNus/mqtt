@@ -3,7 +3,7 @@ var express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 
-const MQTT_SERVER = "192.168.1.12";
+const MQTT_SERVER = "192.168.1.14";
 const MQTT_PORT = "1883";
 const MQTT_USER = "";
 const MQTT_PASSWORD = "";
@@ -34,7 +34,7 @@ client.on('message', function (topic, message) {
     console.log('Received message:', message.toString());
     const sensorData = JSON.parse(message.toString());
 
-    axios.post("http://192.168.1.12:4000/data", sensorData)
+    axios.post("http://192.168.1.14:4000/data", sensorData)
         .then(response => {
             console.log('Data sent successfully to the server:', response.data);
         })
